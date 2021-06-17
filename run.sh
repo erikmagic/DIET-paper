@@ -29,6 +29,7 @@ FILES=$(find $CONFIGS -name '*.yml')
 CURRENT_DIR=$(pwd)
 CURRENT_EXPERIMENT=1
 ALL_EXPERIMENTS=$(find $CONFIGS -name '*.yml' | wc -l | awk '{$1=$1};1')
+DRIVE_PATH="../drive/MyDrive/rasa-res"
 
 for filename in $FILES; do
     NAME=$(basename "$filename" .yml)
@@ -37,10 +38,10 @@ for filename in $FILES; do
     echo "----------------------------------------------------------------"
 
     if [[ "$PARENTDIR" = "$TABLE_FOLDER" ]]; then
-        EXPERIMENT_FOLDER=experiments/$TABLE_FOLDER/$NAME
+        EXPERIMENT_FOLDER=$DRIVE_PATH/experiments/$TABLE_FOLDER/$NAME
         echo "Running experiment $NAME ($CURRENT_EXPERIMENT/$ALL_EXPERIMENTS)."
     else
-        EXPERIMENT_FOLDER=experiments/$TABLE_FOLDER/$PARENTDIR/$NAME
+        EXPERIMENT_FOLDER=$DRIVE_PATH/experiments/$TABLE_FOLDER/$PARENTDIR/$NAME
         echo "Running experiment $PARENTDIR/$NAME ($CURRENT_EXPERIMENT/$ALL_EXPERIMENTS)."
     fi
 
